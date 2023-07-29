@@ -1,13 +1,9 @@
-# %% [markdown]
-# To test if a general purpose sentiment analysis model can be used to predict the sentiment of political tweets.
-
-# %%
-# Define Model
 import torch
 import torch.nn as nn
 from tqdm import tqdm
 from transformers import RobertaModel
 from transformers import RobertaTokenizer
+from transformers import get_linear_schedule_with_warmup
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 import re
 
@@ -31,6 +27,16 @@ class RobertaClassifier(nn.Module):
         if freeze:
             for param in self.bert.parameters():
                 param.requires_grad = False
+
+    def get_optimizer(self, lr=1e-3):
+
+        optimizer = torch.optim.AdamW(self.parameters(), lr=lr)
+        return optimizer
+    
+    def get_scheduler(self, optimizer, data_loader):
+        
+        total_steps = len(data_loader) * self.epochs
+        get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=total_steps)
     
     def forward(self, input_ids, attention_mask):
 
@@ -73,8 +79,16 @@ class RobertaClassifier(nn.Module):
 
         return input_ids, attention_masks
     
-    def create_dataloader(test_inputs, test_masks, batch_size):
-        test_data = TensorDataset(test_inputs, test_masks)
+    def create_test_dataloader(inputs, masks, labels, batch_size):
+        test_data = TensorDataset(inputs, masks)
         test_sampler = SequentialSampler(test_data)
         test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=batch_size)
         return test_dataloader
+    
+    def create_train_dataloader(inputs, masks, labels, batch_size):
+        train_data = TensorDataset(inputs, masks, labels)
+        train_sampler = RandomSampler(train_data)
+        train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
+        return train_dataloader
+    
+    
