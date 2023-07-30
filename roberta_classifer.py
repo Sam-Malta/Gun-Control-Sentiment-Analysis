@@ -80,7 +80,7 @@ class RobertaClassifier(nn.Module):
 
         return input_ids, attention_masks
     
-    def create_test_dataloader(self, inputs, masks, labels, batch_size):
+    def create_test_dataloader(self, inputs, masks, batch_size):
         test_data = TensorDataset(inputs, masks)
         test_sampler = SequentialSampler(test_data)
         test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=batch_size)
