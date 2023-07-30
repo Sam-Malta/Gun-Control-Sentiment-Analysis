@@ -33,10 +33,11 @@ class RobertaClassifier(nn.Module):
         optimizer = torch.optim.AdamW(self.parameters(), lr=lr)
         return optimizer
     
-    def get_scheduler(self, optimizer, data_loader):
+    def get_scheduler(self, optimizer, data_loader, epochs):
         
-        total_steps = len(data_loader) * self.epochs
-        get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=total_steps)
+        total_steps = len(data_loader) * epochs
+        scheduler = get_linear_schedule_with_warmup(optimizer, num_warmup_steps=0, num_training_steps=total_steps)
+        return scheduler
     
     def forward(self, input_ids, attention_mask):
 
