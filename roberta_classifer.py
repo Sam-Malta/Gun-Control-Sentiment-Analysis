@@ -49,7 +49,7 @@ class RobertaClassifier(nn.Module):
         return logits
     
     
-    def preprocess_for_roberta(data):
+    def preprocess_for_roberta(self, data):
         # Initialize lists to store the input_ids and attention_masks
         input_ids = []
         attention_masks = []
@@ -79,13 +79,13 @@ class RobertaClassifier(nn.Module):
 
         return input_ids, attention_masks
     
-    def create_test_dataloader(inputs, masks, labels, batch_size):
+    def create_test_dataloader(self, inputs, masks, labels, batch_size):
         test_data = TensorDataset(inputs, masks)
         test_sampler = SequentialSampler(test_data)
         test_dataloader = DataLoader(test_data, sampler=test_sampler, batch_size=batch_size)
         return test_dataloader
     
-    def create_train_dataloader(inputs, masks, labels, batch_size):
+    def create_train_dataloader(self, inputs, masks, labels, batch_size):
         train_data = TensorDataset(inputs, masks, labels)
         train_sampler = RandomSampler(train_data)
         train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
