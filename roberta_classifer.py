@@ -11,7 +11,7 @@ class RobertaClassifier(nn.Module):
     def __init__(self, freeze=False):
         super(RobertaClassifier, self).__init__()
         # Specify hidden size of BERT, hidden size of our classifier, and number of labels
-        D_in, H, D_out = 768, 50, 2
+        D_in, H, D_out = 768, 50, 3
 
         # Instantiate BERT model
         self.bert = RobertaModel.from_pretrained("roberta-base")
