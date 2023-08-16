@@ -1,2 +1,5 @@
-*.csv
 
+*.pt
+cookies.json
+dataset.csv
+*.csv
