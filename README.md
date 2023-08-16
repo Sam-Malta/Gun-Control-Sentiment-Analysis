@@ -46,9 +46,9 @@ Multiple different methods/models were considered to perform the sentiment analy
 
 The comments inferenced were from two different NRA posts. The results are show below.
 
-![NRA Post 1](Social-Media-Sentiment-Analysis\comment_sentiment_ouputs\nra_new_legislation.png)
+![NRA Post 1](comment_sentiment_ouputs\nra_new_legislation.png)
 
-![NRA Post 2](Social-Media-Sentiment-Analysis\comment_sentiment_ouputs\parkland_nra2.png)
+![NRA Post 2](comment_sentiment_ouputs\parkland_nra2.png)
 
 The data above shows a strong anti-gun control sentiment in the comments of NRA posts. This is not entirely suprising as the NRA could be classified as mostly against new gun control laws. 
 
