@@ -3,5 +3,3 @@
 cookies.json
 dataset.csv
 *.csv
-__pycache__
-.gitattributes
