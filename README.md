@@ -23,7 +23,7 @@ As a prominent socio-political topic, gun control frequently ignites debates bet
 
 ## Key Features
 
-- **Data Collection/Processing:** This project utilizes a data-scraper to gain access to social media post and comment data (specifically, Facebook data is collected in this project). This data is not included in this repository. The data is then preprocessed and cleaned to prepare it for sentiment analysis.
+- **Data Collection/Processing:** This project utilizes a data-scraper to gain access to social media post and comment data (specifically, Facebook data is collected in this project). The data is then preprocessed and cleaned to prepare it for sentiment analysis.
 - **Sentiment Analysis:** This project integrates NLP techniques to categorize social media content into distinct sentiment classes: Pro-Gun Control, Anti-Gun Control, or Irrelevant.
 - **Data Visualization:** This project uses matplotlib to create visualizations that depict the distribution of sentiments.
 
